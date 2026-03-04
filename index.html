@@ -189,9 +189,9 @@ body::before {
 /* Vivegam presents */
 .presents-label {
   font-family: 'Cinzel', serif;
-  font-size: 12px;
+  font-size: 20px;
   letter-spacing: 8px;
-  color: var(--gold-dim);
+  color: var(--gold-dim--bold);
   text-transform: uppercase;
   margin-bottom: 8px;
   opacity: 0;
@@ -1123,6 +1123,113 @@ section, footer, nav, div { max-width: 100%; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
 
+/* ===================== COORDINATOR SECTION ===================== */
+.coordinator-grid {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.coordinator-card {
+  background: rgba(201,162,39,0.04);
+  border: 1px solid rgba(201,162,39,0.18);
+  border-radius: 14px;
+  padding: 32px 28px;
+  min-width: 220px;
+  flex: 1;
+  max-width: 280px;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.coordinator-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: scaleX(0);
+  transition: transform 0.4s;
+}
+
+.coordinator-card:hover::before { transform: scaleX(1); }
+.coordinator-card:hover {
+  border-color: rgba(201,162,39,0.4);
+  background: rgba(201,162,39,0.08);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 30px rgba(201,162,39,0.08);
+}
+
+.coord-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-dim), var(--gold));
+  color: #000;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 22px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  box-shadow: 0 0 20px rgba(201,162,39,0.3);
+}
+
+.coord-name {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  color: var(--white);
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+.coord-role {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.coord-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  background: rgba(201,162,39,0.08);
+  border: 1px solid rgba(201,162,39,0.25);
+  border-radius: 30px;
+  padding: 10px 20px;
+  color: var(--gold);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+}
+
+.coord-phone:hover {
+  background: rgba(201,162,39,0.18);
+  border-color: var(--gold);
+  box-shadow: 0 0 16px rgba(201,162,39,0.2);
+}
+
+.coord-phone-icon { font-size: 16px; }
+
+@media (max-width: 500px) {
+  .coordinator-grid { flex-direction: column; align-items: center; gap: 16px; }
+  .coordinator-card { min-width: unset; width: 100%; max-width: 300px; padding: 24px 20px; }
+  .coord-name { font-size: 14px; }
+  .coord-phone { font-size: 13px; padding: 9px 16px; }
+}
+
+
 /* ===================== PARTICLE EMBERS ===================== */
 .embers-canvas {
   position: fixed;
@@ -1138,8 +1245,8 @@ section, footer, nav, div { max-width: 100%; }
 
 <!-- ====== INTRO ====== -->
 <div id="intro">
-  <img src="multiverse_logo.png" class="intro-logo1" alt="Vivegam">
-  <img src="Vivegam_Mankatha.png" class="intro-logo2" alt="Vivegam Student Association">
+  <img src="Vivegam_Mankatha.png" class="intro-logo1" alt="Vivegam">
+  <img src="multiverse_loGO.png" class="intro-logo2" alt="Vivegam Student Association">
   <p class="intro-text">MULTIVERSE FEST 2K26</p>
 </div>
 
@@ -1181,10 +1288,10 @@ section, footer, nav, div { max-width: 100%; }
     <p class="presents-label">Vivegam Student Association Presents</p>
 
     <div class="event-title-wrap">
-      <h1>MULTIVERSE</h1>
+      <h1>MULTIVERSE FEST</h1>
     </div>
 
-    <p class="event-subtitle">FEST</p>
+    <p class="event-subtitle"></p>
     <span class="year-tag">2K26</span>
 
     <div class="golden-divider">
@@ -1197,7 +1304,7 @@ section, footer, nav, div { max-width: 100%; }
       <div class="meta-item">
         <span class="meta-icon">📅</span>
         <span class="meta-label">Date</span>
-        <span class="meta-value">11 APR 2026</span>
+        <span class="meta-value">17 MAR 2026</span>
       </div>
       <div class="meta-item">
         <span class="meta-icon">🕐</span>
@@ -1312,57 +1419,57 @@ section, footer, nav, div { max-width: 100%; }
 
   <div class="events-grid">
 
-    <a href="https://forms.gle/jsKL3J7nCfyuRy7G9" target="_blank" class="event-card reveal reveal-delay-1">
+    <a href="https://forms.gle/9pNg2cmqGMRy6TY67" target="_blank" class="event-card reveal reveal-delay-1">
       <span class="register-badge">Register →</span>
       <span class="card-emoji">🚢</span>
       <div class="card-name">Shipwreck</div>
       <div class="card-details">
         <span class="card-detail">📍 <strong>Sarada Hall</strong></span>
       </div>
-      <p class="card-coordinator">Coordinators: Arunachalam & Barath</p>
+      <p class="card-coordinator">Coordinators: Ragul v</p>
     </a>
 
-    <a href="https://forms.gle/qaozc3MzFmoRSmLAA" target="_blank" class="event-card reveal reveal-delay-2">
+    <a href="https://forms.gle/k96XVxHvDTKJBNGy7" target="_blank" class="event-card reveal reveal-delay-2">
       <span class="register-badge">Register →</span>
       <span class="card-emoji">📈</span>
       <div class="card-name">IPL Auction</div>
       <div class="card-details">
         <span class="card-detail">📍 <strong>Sarada Hall</strong></span>
       </div>
-      <p class="card-coordinator">Coordinators: Tharun & Shreyas</p>
+      <p class="card-coordinator">Coordinators: N Barath</p>
     </a>
 
-    <a href="https://forms.gle/QMNMd7rF7gAm1Quo8" target="_blank" class="event-card reveal reveal-delay-3">
+    <a href="https://forms.gle/kmXKP8GzuQTXT4Ye7" target="_blank" class="event-card reveal reveal-delay-3">
       <span class="register-badge">Register →</span>
       <span class="card-emoji">🧠</span>
-      <div class="card-name">Trivia Time</div>
+      <div class="card-name">Trivia Time (Gen. quiz)</div>
       <div class="card-details">
         <span class="card-detail">📍 <strong>Sister Nivethitha</strong></span>
       </div>
-      <p class="card-coordinator">Coordinators: Saran & Balaji</p>
+      <p class="card-coordinator">Coordinators: Arunachalam K</p>
     </a>
 
-    <a href="https://forms.gle/eVFyfzwSSowz9rvV6" target="_blank" class="event-card reveal reveal-delay-1">
+    <a href="https://forms.gle/xqZEbobviim8vVEp6" target="_blank" class="event-card reveal reveal-delay-1">
       <span class="register-badge">Register →</span>
       <span class="card-emoji">🎬</span>
-      <div class="card-name">Cinemalia</div>
+      <div class="card-name">Movie Quiz</div>
       <div class="card-details">
         <span class="card-detail">📍 <strong>RKN Hall</strong></span>
       </div>
-      <p class="card-coordinator">Coordinators: Bhavadesh</p>
+      <p class="card-coordinator">Coordinators: Shreyas</p>
     </a>
 
-    <a href="https://forms.gle/JU3cofmGgpGKK1oD7" target="_blank" class="event-card reveal reveal-delay-2">
+    <a href="https://forms.gle/wysbb8bZ4mc3sVKa8" target="_blank" class="event-card reveal reveal-delay-2">
       <span class="register-badge">Register →</span>
       <span class="card-emoji">🎉</span>
-      <div class="card-name">Pot Porri</div>
+      <div class="card-name">PotPourri</div>
       <div class="card-details">
         <span class="card-detail">📍 <strong>Sister Nivethitha</strong></span>
       </div>
-      <p class="card-coordinator">Coordinators: Shreyas & Balaji</p>
+      <p class="card-coordinator">Coordinators: Balaji & Tharun 1</p>
     </a>
 
-    <a href="https://forms.gle/tbJCPwbuttGQsA4Y8" target="_blank" class="event-card reveal reveal-delay-3">
+    <a href="https://forms.gle/6j5GE5N7fRTAdxBj9" target="_blank" class="event-card reveal reveal-delay-3">
       <span class="register-badge">Register →</span>
       <span class="card-emoji">🎤</span>
       <div class="card-name">Debate</div>
@@ -1374,8 +1481,6 @@ section, footer, nav, div { max-width: 100%; }
 
   </div>
 </section>
-
-
 
 <!-- ====== DOCS ====== -->
 <section id="docs">
@@ -1390,6 +1495,37 @@ section, footer, nav, div { max-width: 100%; }
       <span class="doc-icon">📩</span>
       <span class="doc-text">Invitation</span>
     </a>
+  </div>
+</section>
+
+<!-- ====== CONTACT COORDINATORS ====== -->
+<section id="contact" style="background:var(--dark3); padding:70px 20px; text-align:center;">
+  <p class="section-label reveal">Get In Touch</p>
+  <h2 class="section-title reveal">EVENT COORDINATORS</h2>
+  <p style="font-size:13px;color:var(--text-dim);margin-bottom:36px;letter-spacing:1px;" class="reveal">For queries, reach out to our coordinators directly</p>
+
+  <div class="coordinator-grid reveal">
+
+    <div class="coordinator-card">
+      <div class="coord-avatar">B</div>
+      <h3 class="coord-name">Bhavadesh A</h3>
+      <p class="coord-role">Event Coordinator</p>
+      <a href="tel:9003230851" class="coord-phone">
+        <span class="coord-phone-icon">📞</span>
+        <span>+91 90032 30851</span>
+      </a>
+    </div>
+
+    <div class="coordinator-card">
+      <div class="coord-avatar">A</div>
+      <h3 class="coord-name">Arunachalam</h3>
+      <p class="coord-role">Event Coordinator</p>
+      <a href="tel:7845855154" class="coord-phone">
+        <span class="coord-phone-icon">📞</span>
+        <span>+91 78458 55154</span>
+      </a>
+    </div>
+
   </div>
 </section>
 
