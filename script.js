@@ -24,22 +24,28 @@ setTimeout(() => {
   if (intro) intro.remove();
 }, 5000);
 
-// ====== SCROLL REVEAL ======
+// ====== SCROLL REVEAL (re-animates on scroll up too) ======
 const reveals = document.querySelectorAll(".reveal");
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add("visible");
-      observer.unobserve(e.target);
+    } else {
+      // Remove visible so it re-animates when scrolled back into view
+      e.target.classList.remove("visible");
     }
   });
 }, { threshold: 0.12 });
 reveals.forEach(el => observer.observe(el));
 
-// ====== EMBER PARTICLES ======
+// ====== EMBER PARTICLES (mobile-optimised) ======
 const canvas = document.getElementById("embers");
 const ctx = canvas.getContext("2d");
 let W, H, particles = [];
+
+// Fewer particles on mobile for better performance
+const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 768;
+const PARTICLE_COUNT = isMobile ? 25 : 60;
 
 function resize() {
   W = canvas.width = window.innerWidth;
@@ -72,18 +78,27 @@ class Ember {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fillStyle = `hsl(${this.hue}, 100%, 60%)`;
-    ctx.shadowBlur = 6;
-    ctx.shadowColor = `hsl(${this.hue}, 100%, 50%)`;
+    // Skip expensive shadowBlur on mobile
+    if (!isMobile) {
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = `hsl(${this.hue}, 100%, 50%)`;
+    }
     ctx.fill();
     ctx.restore();
   }
 }
 
-for (let i = 0; i < 60; i++) particles.push(new Ember());
+for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Ember());
 
+// Throttle to ~30fps on mobile using frame skipping
+let frameCount = 0;
 function animate() {
-  ctx.clearRect(0, 0, W, H);
-  particles.forEach(p => { p.update(); p.draw(); });
+  frameCount++;
+  // On mobile, only render every 2nd frame (~30fps instead of 60fps)
+  if (!isMobile || frameCount % 2 === 0) {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => { p.update(); p.draw(); });
+  }
   requestAnimationFrame(animate);
 }
 animate();

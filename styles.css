@@ -50,6 +50,11 @@ body::before {
   opacity: 0.4;
 }
 
+/* Disable heavy noise overlay on mobile */
+@media (max-width: 768px) {
+  body::before { display: none; }
+}
+
 /* ===================== INTRO SCREEN ===================== */
 #intro {
   position: fixed;
@@ -866,7 +871,7 @@ footer::before {
 }
 
 .footer-credit {
-  font-size: 12px;
+  font-size: px;
   color: var(--text-dim);
   letter-spacing: 1px;
 }
@@ -952,11 +957,17 @@ nav.solid { background: rgba(8,6,8,0.97); border-bottom: 1px solid rgba(201,162,
   inset: 0;
   background: rgba(8,6,8,0.97);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   z-index: 150;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 36px;
+}
+
+/* Reduce blur cost on mobile */
+@media (max-width: 768px) {
+  .mobile-menu { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
 }
 .mobile-menu.open { display: flex; }
 .mobile-menu a {
@@ -1103,10 +1114,12 @@ section, footer, nav, div { max-width: 100%; }
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
 }
 
 .reveal-delay-1 { transition-delay: 0.1s; }
